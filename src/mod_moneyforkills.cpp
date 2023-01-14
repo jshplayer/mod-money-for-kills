@@ -102,6 +102,7 @@ static constexpr const char* MFKAnnouncePvPLoot = "MFK.Announce.World.PvP.Loot";
 static constexpr const char* MFKBountyKillingBlow = "MFK.Bounty.KillingBlowOnly";
 static constexpr const char* MFKBountyMoneyForNothing = "MFK.Bounty.MoneyForNothing";
 static constexpr const char* MFKPVPCorpseLootPercent = "MFK.PVP.CorpseLootPercent";
+static constexpr const char* MFKPVPCorpseLevelRange = "MFK.PVP.CorpseLootLevelRange";
 static constexpr const char* MFKBountyKillMult = "MFK.Bounty.Kill.Multiplier";
 static constexpr const char* MFKPVPKillMult = "MFK.PVP.Kill.Multiplier";
 static constexpr const char* MFKBountyKillDBMult = "MFK.Bounty.DungeonBoss.Multiplier";
@@ -131,6 +132,19 @@ public:
 		{
 			const uint32 PVPMultiplier = sConfigMgr->GetOption<uint32>(MFKPVPKillMult, 0);
 			const uint32 VictimLevel = victim->getLevel();
+
+            if (sConfigMgr->GetOption<uint32>(MFKPVPCorpseLevelRange, 5))
+            {
+                const uint32 LevelRange = sConfigMgr->GetOption<uint32>(MFKPVPCorpseLevelRange, 5);
+                const uint32 KillerLevel = killer->getLevel();
+                const uint32 CurrentRange = std::abs(int32(KillerLevel - VictimLevel));
+
+                //The kill was not in the range so the player should not be rewarded.
+                if (CurrentRange > LevelRange)
+                {
+                    return;
+                }
+            }
 
             // No reward for killing yourself
             if (killer->GetGUID() == victim->GetGUID())
