@@ -97,7 +97,8 @@ static constexpr const char* MFKAnnounceDungeonBoss = "MFK.Announce.Group.Dungeo
 static constexpr const char* MFKAnnounceWorldSuicide = "MFK.Announce.World.Suicide";
 static constexpr const char* MFKAnnounceGuildSuicide = "MFK.Announce.Guild.Suicide";
 static constexpr const char* MFKAnnounceGroupSuicide = "MFK.Announce.Group.Suicide";
-static constexpr const char* MFKAnnouncePvP = "MFK.Announce.World.PvP";
+static constexpr const char* MFKAnnouncePvPBounty = "MFK.Announce.World.PvP.Bounty";
+static constexpr const char* MFKAnnouncePvPLoot = "MFK.Announce.World.PvP.Loot";
 static constexpr const char* MFKBountyKillingBlow = "MFK.Bounty.KillingBlowOnly";
 static constexpr const char* MFKBountyMoneyForNothing = "MFK.Bounty.MoneyForNothing";
 static constexpr const char* MFKPVPCorpseLootPercent = "MFK.PVP.CorpseLootPercent";
@@ -131,16 +132,16 @@ public:
 			const uint32 PVPMultiplier = sConfigMgr->GetOption<uint32>(MFKPVPKillMult, 0);
 			const uint32 VictimLevel = victim->getLevel();
 
+            // No reward for killing yourself
+            if (killer->GetGUID() == victim->GetGUID())
+            {
+                Notify(killer, victim, nullptr, KILLTYPE_SUICIDE, 0);
+                return;
+            }
+
 			// If enabled...
 			if (PVPMultiplier > 0)
 			{
-				// No reward for killing yourself
-				if (killer->GetGUID() == victim->GetGUID())
-				{
-					Notify(killer, victim, nullptr, KILLTYPE_SUICIDE, 0);
-					return;
-				}
-
 				const int BountyAmount = ((VictimLevel * PVPMultiplier) / 3);
 
 				// Pay the player the additional PVP bounty
@@ -294,9 +295,16 @@ public:
 			victimMsg.append(killer->GetName()).append(" rifles through your corpse and takes").append(rewardVal).append(".");
 			ChatHandler(victim->GetSession()).SendSysMessage(victimMsg.c_str());
 			ChatHandler(killer->GetSession()).SendSysMessage(rewardMsg.c_str());
+
+            if (sConfigMgr->GetOption<bool>(MFKAnnouncePvPLoot, true))
+            {
+                rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000has slain ");
+                rewardMsg.append(victim->GetName()).append(" stealing ").append(rewardVal).append(".");
+                sWorld->SendServerMessage(SERVER_MSG_STRING, rewardMsg.c_str());
+            }
 			break;
 		case KILLTYPE_PVP:
-			if (sConfigMgr->GetOption<bool>(MFKAnnouncePvP, true))
+			if (sConfigMgr->GetOption<bool>(MFKAnnouncePvPBounty, true))
 			{
 				rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000has slain ");
 				rewardMsg.append(victim->GetName()).append(" earning a bounty of").append(rewardVal).append(".");

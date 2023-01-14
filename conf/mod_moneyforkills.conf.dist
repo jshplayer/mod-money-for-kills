@@ -38,7 +38,8 @@ MFK.Announce.Group.Suicide = 0
 # Enable PvP announcements
 # Default 1
 
-MFK.Announce.World.PvP = 1
+MFK.Announce.World.PvP.Bounty = 1
+MFK.Announce.World.PvP.Loot = 1
 
 # Enable Group announcements for killing a dungeon boss
 # Default 1
