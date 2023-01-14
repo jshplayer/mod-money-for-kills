@@ -298,8 +298,9 @@ public:
 
             if (sConfigMgr->GetOption<bool>(MFKAnnouncePvPLoot, true))
             {
+                rewardMsg.clear();
                 rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000has slain ");
-                rewardMsg.append(victim->GetName()).append(" stealing ").append(rewardVal).append(".");
+                rewardMsg.append(victim->GetName()).append(" stealing").append(rewardVal).append(".");
                 sWorld->SendServerMessage(SERVER_MSG_STRING, rewardMsg.c_str());
             }
 			break;
