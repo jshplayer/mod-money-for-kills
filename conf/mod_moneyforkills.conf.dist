@@ -76,7 +76,7 @@ MFK.PVP.CorpseLootTokenCount = 0
 # Default: 5
 MFK.PVP.CorpseLootTokenPercent = 5
 
-# How many levels you need to be within before you can steal gold.
+# How many levels you need to be within before you can steal gold/tokens.
 # Setting this to 0 will disable the level range check.
 # Default: 5
 MFK.PVP.CorpseLootLevelRange = 5
