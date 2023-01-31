@@ -62,6 +62,20 @@ MFK.Bounty.MoneyForNothing = 0
 
 MFK.PVP.CorpseLootPercent = 5
 
+# The token item id that will be awarded to the player from the victim.
+# Default: 37711 (Currency Token Test Token 1)
+MFK.PVP.CorpseLootToken = 37711
+
+# The amount of tokens that will be stolen on killing blow.
+# Setting this to 0 will disable the token count being stolen.
+# Default: 0
+MFK.PVP.CorpseLootTokenCount = 0
+
+# The percentage amount of tokens that will be stolen on killing blow.
+# If this value is over 0 it will override the CorpseLootTokenCount.
+# Default: 5
+MFK.PVP.CorpseLootTokenPercent = 5
+
 # How many levels you need to be within before you can steal gold.
 # Setting this to 0 will disable the level range check.
 # Default: 5
