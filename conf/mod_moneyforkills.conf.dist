@@ -59,6 +59,7 @@ MFK.Bounty.MoneyForNothing = 0
 # How much gold does a Player take from the victim's corpse on a PVP kill?
 # Setting this to 0 will disable player gold stealing.
 # Default: 5 (5% of the victim's gold)
+# Range: 1-100
 
 MFK.PVP.CorpseLootPercent = 5
 
@@ -73,7 +74,8 @@ MFK.PVP.CorpseLootTokenCount = 0
 
 # The percentage amount of tokens that will be stolen on killing blow.
 # If this value is over 0 it will override the CorpseLootTokenCount.
-# Default: 5
+# Default: 5 (5% of the victim's tokens)
+# Range: 1-100
 MFK.PVP.CorpseLootTokenPercent = 5
 
 # How many levels you need to be within before you can steal gold/tokens.
