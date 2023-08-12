@@ -134,7 +134,7 @@ public:
 	{
 		// If enabled...
 		if (sConfigMgr->GetOption<bool>(MFKEnable, true))
-		{
+        {
             if (!sConfigMgr->GetOption<bool>(MFKPVPStealInBattlegrounds, false))
             {
                 if (killer->InBattleground() || killer->InArena() || killer->IsInWintergrasp() ||
@@ -143,6 +143,13 @@ public:
                     return;
                 }
             }
+		// Don't steal in dungeons or raids
+				if (killer->GetMap()->IsDungeon() || killer->GetMap()->IsRaid() ||
+					victim->GetMap()->IsDungeon() || victim->GetMap()->IsRaid())
+				{
+					return;
+				}
+			}
 
 			const uint32 PVPMultiplier = sConfigMgr->GetOption<uint32>(MFKPVPKillMult, 0);
 			const uint32 VictimLevel = victim->getLevel();
