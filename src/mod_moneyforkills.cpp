@@ -142,7 +142,7 @@ public:
                 {
                     return;
                 }
-            }
+				
 		// Don't steal in dungeons or raids
 				if (killer->GetMap()->IsDungeon() || killer->GetMap()->IsRaid() ||
 					victim->GetMap()->IsDungeon() || victim->GetMap()->IsRaid())
