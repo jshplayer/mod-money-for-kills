@@ -220,8 +220,9 @@ public:
                 VictimLootTokenStealCount != 0 &&
                 VictimLootTokenCount >= VictimLootTokenStealCount)
             {
-                // Steal a percentage of the victims tokens
+                // Steal and burn a percentage of the victims tokens
                 victim->DestroyItemCount(TokenId, VictimLootTokenStealCount, true);
+				VictimLootTokenStealCount = VictimLootTokenStealCount * sConfigMgr->GetOption<float>("MFK.PVP.KeepRatio", 1.00);
                 killer->AddItem(TokenId, VictimLootTokenStealCount);
 
                 // Inform the player of the corpse loot

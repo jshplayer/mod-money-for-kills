@@ -72,11 +72,17 @@ MFK.PVP.CorpseLootToken = 37711
 # Default: 0
 MFK.PVP.CorpseLootTokenCount = 0
 
-# The percentage amount of tokens that will be stolen on killing blow.
+# The percentage amount of tokens that will be stolen from the victim on a killing blow.
 # If this value is over 0 it will override the CorpseLootTokenCount.
 # Default: 5 (5% of the victim's tokens)
 # Range: 1-100
 MFK.PVP.CorpseLootTokenPercent = 5
+
+# The ratio of tokens stolen that will be burned during the transfer on a killing blow.
+# If this value is under 1 it will introduce a burn, 0.5 being 50% of transferred tokens.
+# Default: 1 (no burn effect)
+# Range: 0.0-1.0
+MFK.PVP.KeepRatio = 1.0
 
 # How many levels you need to be within before you can steal gold/tokens.
 # Setting this to 0 will disable the level range check.
