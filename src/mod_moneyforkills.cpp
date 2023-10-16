@@ -375,7 +375,7 @@ public:
             {
                 rewardMsg.clear();
                 rewardMsg.append("|cff676767[ |cffFFFF00World |cff676767]|r:|cff4CFF00 ").append(killer->GetName()).append(" |cffFF0000has slain ");
-                rewardMsg.append("|cff4CFF00").append(victim->GetName()).append(" |cffFF0000stealing").append(rewardVal).append(".");
+                rewardMsg.append("|cff4CFF00").append(victim->GetName()).append(" |cffFF0000stealing").append(rewardVal).append(", the other half lost in the bloodshed.");
                 sWorld->SendServerMessage(SERVER_MSG_STRING, rewardMsg.c_str());
             }
             break;
